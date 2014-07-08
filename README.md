@@ -1,0 +1,4 @@
+skeletor
+========
+
+Framework MEAN stack
