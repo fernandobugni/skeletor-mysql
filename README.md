@@ -3,6 +3,6 @@ skeletor
 
 Framework MEAN stack
 
-Ejemplo usando el Framework Skeletor
+Un muy buen ejemplo usando el Framework Skeletor
 
 
