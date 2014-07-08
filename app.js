@@ -11,6 +11,7 @@ var schemas = require('./db/schemas').schemas;
 var schemasMiddleware = require('./schemasMiddleware');
 // Rutas
 var indexRoute = require('./routes/index');
+var messageRoute = require('./routes/message');
 
 var app = express();
 
@@ -28,14 +29,20 @@ app.use(schemasMiddleware.inject(schemas)); // Cosas que se inyectan en el reque
 
 if (app.get('env') === 'development'){
     app.use(function(req,res,next){
-        console.log("Los esquemas!");
-        console.log(req.schemas);
+        //console.log("Los esquemas!");
+        //console.log(req.schemas);
         next();
     })
 }
 
 // Las rutas de la aplicacion.
+// El index
 app.get('/', indexRoute.index);
+// Los mensajes.
+app.get('/api/fixedMessage', messageRoute.fixedMessage);
+app.get('/api/messages', messageRoute.list); 
+app.post('/api/message', messageRoute.create);
+
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -69,8 +76,11 @@ app.use(function(err, req, res, next) {
 });
 
 
+// Asegurarse que el Gulp este corriendo!!
+
 app.set('port', process.env.PORT || 3000); 
 app.listen(app.get('port'), function() { 
     console.log('Express server listening on port ' + app.get('port')); 
 });
+
 
