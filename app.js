@@ -5,6 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// DB.
+var schemas = require('./db/schemas').schemas;
+// Middleware
+var schemasMiddleware = require('./schemasMiddleware');
+// Rutas
 var indexRoute = require('./routes/index');
 
 var app = express();
@@ -19,7 +24,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(schemasMiddleware.inject(schemas)); // Cosas que se inyectan en el request al procesar rutas.
 
+if (app.get('env') === 'development'){
+    app.use(function(req,res,next){
+        console.log("Los esquemas!");
+        console.log(req.schemas);
+        next();
+    })
+}
 
 // Las rutas de la aplicacion.
 app.get('/', indexRoute.index);

@@ -1,0 +1,5 @@
+{
+  "directory": "public/vendor",
+  "proxy": "http://192.168.9.42:3128",
+  "https-proxy": "http://192.168.9.42:3128"
+}
