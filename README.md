@@ -1,6 +1,6 @@
 skeletor
 ========
-Framework MEAN stack
+Framework MEAN stack using MySQL
 
 Un muy buen ejemplo usando el Framework Skeletor
 
