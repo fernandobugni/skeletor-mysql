@@ -37,7 +37,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(schemasMiddleware.inject(schemas)); // Cosas que se inyectan en el request al procesar rutas.
+//app.use(schemasMiddleware.inject(schemas)); // Cosas que se inyectan en el request al procesar rutas.
 
 if (app.get('env') === 'development'){
     app.use(function(req,res,next){
